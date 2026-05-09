@@ -20,15 +20,15 @@ function buscar(lista, q) {
   );
 }
 
-async function stGet(key) {
-  try { const r = await window.storage.get(key); return r?.value ? JSON.parse(r.value) : null; }
+async function stGet(key: string) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; }
   catch { return null; }
 }
-async function stSet(key, val) {
-  try { await window.storage.set(key, JSON.stringify(val)); } catch {}
+async function stSet(key: string, val: unknown) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
 }
-async function stDel(key) {
-  try { await window.storage.delete(key); } catch {}
+async function stDel(key: string) {
+  try { localStorage.removeItem(key); } catch {}
 }
 
 const S = {
