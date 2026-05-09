@@ -88,6 +88,7 @@ export default function App() {
   }, []);
 
   async function guardarPacientes(lista) {
+    console.log("guardarPacientes llamado", lista.length);
     setPacientes(lista);
     await stSet("carosi-pacientes", lista);
   }
