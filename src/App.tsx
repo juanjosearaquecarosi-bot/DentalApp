@@ -49,7 +49,7 @@ const S = {
     background: "#D32F2F", cursor: "pointer", fontWeight: 700, color: "#fff", fontSize: "14px",
   },
   input: {
-    width: "100%", boxSizing: "border-box", padding: "10px 13px",
+    width: "100%", boxSizing: "border-box" as const, padding: "10px 13px",
     borderRadius: "9px", border: "1.5px solid #DCE5F0", outline: "none",
     fontSize: "14px", fontFamily: "inherit", color: "#0F2C52", background: "#fff",
   },
@@ -443,7 +443,7 @@ function CamposForm({ form, setForm }) {
   );
 }
 
-function Overlay({ onCerrar, children }) {
+function Overlay({ onCerrar, children }: { onCerrar: () => void; children: React.ReactNode }) {
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.55)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 200, padding: "16px" }}>
       <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", maxWidth: "420px", width: "100%", boxShadow: "0 20px 60px rgba(0,0,0,0.2)", maxHeight: "90vh", overflowY: "auto" }}>
@@ -453,14 +453,14 @@ function Overlay({ onCerrar, children }) {
   );
 }
 
-function Alerta({ tipo, children }) {
+function Alerta({ tipo, children }: { tipo: string; children: React.ReactNode }) {
   const color = tipo === "ok"
     ? { background: "#E8F5E9", border: "1px solid #A5D6A7", color: "#2E7D32" }
     : { background: "#FFEBEE", border: "1px solid #FFCDD2", color: "#C62828" };
   return <div style={{ ...color, borderRadius: "10px", padding: "11px 15px", fontSize: "13px", marginBottom: "14px" }}>{children}</div>;
 }
 
-function BtnIco({ children, onClick, title, bg, bgH, color }) {
+function BtnIco({ children, onClick, title, bg, bgH, color }: { children: React.ReactNode; onClick: () => void; title: string; bg: string; bgH: string; color: string }) {
   const [h, setH] = useState(false);
   return (
     <button onClick={onClick} title={title}
