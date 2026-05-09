@@ -195,6 +195,7 @@ function Agregar({ pacientes, guardar }) {
   const [error, setError] = useState("");
   const [ok, setOk] = useState(false);
   async function guardarPaciente() {
+  console.log("guardarPaciente llamado");
     setError("");
     if (!form.nombre.trim())   return setError("El nombre es obligatorio.");
     if (!form.historia.trim()) return setError("El número de historia es obligatorio.");
