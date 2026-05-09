@@ -25,7 +25,12 @@ async function stGet(key: string) {
   catch { return null; }
 }
 async function stSet(key: string, val: unknown) {
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+  try {
+    localStorage.setItem(key, JSON.stringify(val));
+    console.log("stSet OK:", key);
+  } catch(e) {
+    console.error("stSet ERROR:", e);
+  }
 }
 async function stDel(key: string) {
   try { localStorage.removeItem(key); } catch {}
