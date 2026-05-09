@@ -82,6 +82,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const datos = await stGet("carosi-pacientes");
+      console.log("datos cargados:", datos);
       if (datos) setPacientes(datos);
       setListo(true);
     })();
