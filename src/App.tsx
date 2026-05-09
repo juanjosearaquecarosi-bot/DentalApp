@@ -1,10 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const DEMO = [
-  { id: "1", nombre: "María González Pérez",  cedula: "12345678", historia: "H-0001", telefono: "0414-1234567" },
-  { id: "2", nombre: "Carlos Rodríguez Díaz", cedula: "8765432",  historia: "H-0002", telefono: "0424-7654321" },
-  { id: "3", nombre: "Ana Martínez López",    cedula: "",         historia: "H-0003", telefono: "0416-1112222" },
-];
+const DEMO = [];
 
 function norm(s) {
   return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
@@ -27,7 +23,6 @@ async function stGet(key: string) {
 async function stSet(key: string, val: unknown) {
   try {
     localStorage.setItem(key, JSON.stringify(val));
-    console.log("stSet OK:", key);
   } catch(e) {
     console.error("stSet ERROR:", e);
   }
@@ -82,14 +77,12 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const datos = await stGet("carosi-pacientes");
-      console.log("datos cargados:", datos);
       if (datos) setPacientes(datos);
       setListo(true);
     })();
   }, []);
 
   async function guardarPacientes(lista) {
-    console.log("guardarPacientes llamado", lista.length);
     setPacientes(lista);
     await stSet("carosi-pacientes", lista);
   }
@@ -196,8 +189,7 @@ function Agregar({ pacientes, guardar }) {
   const [error, setError] = useState("");
   const [ok, setOk] = useState(false);
   async function guardarPaciente() {
-  console.log("guardarPaciente llamado");
-    setError("");
+      setError("");
     if (!form.nombre.trim())   return setError("El nombre es obligatorio.");
     if (!form.historia.trim()) return setError("El número de historia es obligatorio.");
     if (form.cedula.trim() && pacientes.find(p => p.cedula === form.cedula.trim()))
